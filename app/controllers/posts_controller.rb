@@ -16,6 +16,10 @@ class PostsController < ApplicationController
 
   private
 
+  def render_unprocessable_entity_response(invalid)
+    render json: { errors: invalid.record.errors}, status: :unprocessable_entity
+  end
+
   def post_params
     params.permit(:category, :content, :title)
   end
